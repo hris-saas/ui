@@ -1,0 +1,26 @@
+{
+  "name": "hr-services-ui",
+  "version": "1.0.0",
+  "description": "HR Services UI",
+  "author": "Bertrand Kintanar",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.8.5",
+    "@nuxtjs/axios": "^5.3.6",
+    "@tailwindcss/ui": "^0.1.3",
+    "nuxt": "^2.0.0",
+    "tailwindcss": "^1.2.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^1.0.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.16.4"
+  }
+}

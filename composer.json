@@ -1,0 +1,40 @@
+{
+    "name": "hr-services/ui",
+    "description": "HR Services UI Package.",
+    "keywords": [
+        "hr-services",
+        "package",
+        "ui"
+    ],
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Bertrand Kintanar",
+            "email": "bertrand.kintanar@gmail.com",
+            "role": "Creator & Designer"
+        }
+    ],
+    "require": {
+        "hr-services/core": "dev-master",
+        "intervention/image": "^2.5"
+    },
+    "support": {
+        "issues": "https://gitlab.com/hr-services/ui/issues",
+        "source": "https://gitlab.com/hr-services/ui"
+    },
+    "autoload": {
+        "psr-4": {
+            "HRServices\\UI\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HRServices\\UI\\Providers\\UIServiceProvider",
+                "HRServices\\UI\\Providers\\RouteServiceProvider"
+            ]
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}
