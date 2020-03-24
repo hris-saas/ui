@@ -16,9 +16,9 @@ import _6f6c098b from '../layouts/default.vue'
 const layouts = { "_default": _6f6c098b }
 
 export default {
-  head: {"title":"hr-services-ui","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"HR Services UI"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
+  head: { "title": "hris-saas-ui", "meta": [{ "charset": "utf-8" }, { "name": "viewport", "content": "width=device-width, initial-scale=1" }, { "hid": "description", "name": "description", "content": "HRis SaaS UI" }], "link": [{ "rel": "icon", "type": "image\u002Fx-icon", "href": "\u002Ffavicon.ico" }], "style": [], "script": [] },
 
-  render (h, props) {
+  render(h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
 
     const layoutEl = h(this.layout || 'nuxt')
@@ -35,7 +35,7 @@ export default {
         mode: 'out-in'
       },
       on: {
-        beforeEnter (el) {
+        beforeEnter(el) {
           // Ensure to trigger scroll event after calling scrollBehavior
           window.$nuxt.$nextTick(() => {
             window.$nuxt.$emit('triggerScroll')
@@ -62,10 +62,10 @@ export default {
     layoutName: ''
   }),
 
-  beforeCreate () {
+  beforeCreate() {
     Vue.util.defineReactive(this, 'nuxt', this.$options.nuxt)
   },
-  created () {
+  created() {
     // Add this.$nuxt in child instances
     Vue.prototype.$nuxt = this
     // add to window so we can listen when ready
@@ -83,7 +83,7 @@ export default {
     this.context = this.$options.context
   },
 
-  mounted () {
+  mounted() {
     this.$loading = this.$refs.loading
   },
   watch: {
@@ -91,13 +91,13 @@ export default {
   },
 
   computed: {
-    isOffline () {
+    isOffline() {
       return !this.isOnline
     }
   },
 
   methods: {
-    refreshOnlineStatus () {
+    refreshOnlineStatus() {
       if (process.client) {
         if (typeof window.navigator.onLine === 'undefined') {
           // If the browser doesn't support connection status reports
@@ -110,7 +110,7 @@ export default {
       }
     },
 
-    async refresh () {
+    async refresh() {
       const pages = getMatchedComponentsInstances(this.$route)
 
       if (!pages.length) {
@@ -148,7 +148,7 @@ export default {
       this.$loading.finish()
     },
 
-    errorChanged () {
+    errorChanged() {
       if (this.nuxt.err && this.$loading) {
         if (this.$loading.fail) {
           this.$loading.fail()
@@ -159,8 +159,8 @@ export default {
       }
     },
 
-    setLayout (layout) {
-      if(layout && typeof layout !== 'string') {
+    setLayout(layout) {
+      if (layout && typeof layout !== 'string') {
         throw new Error('[nuxt] Avoid using non-string value as layout property.')
       }
 
@@ -171,7 +171,7 @@ export default {
       this.layout = layouts['_' + layout]
       return this.layout
     },
-    loadLayout (layout) {
+    loadLayout(layout) {
       if (!layout || !layouts['_' + layout]) {
         layout = 'default'
       }

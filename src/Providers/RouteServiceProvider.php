@@ -1,6 +1,6 @@
 <?php
 
-namespace HRServices\UI\Providers;
+namespace HRis\UI\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'HRServices\UI\Http\Controllers';
+    protected $namespace = 'HRis\UI\Http\Controllers';
 
     protected $alias = 'ui::';
 

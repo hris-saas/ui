@@ -1,7 +1,7 @@
 {
-  "name": "hr-services-ui",
+  "name": "hris-saas-ui",
   "version": "1.0.0",
-  "description": "HR Services UI",
+  "description": "HRis SaaS UI",
   "author": "Bertrand Kintanar",
   "private": true,
   "scripts": {

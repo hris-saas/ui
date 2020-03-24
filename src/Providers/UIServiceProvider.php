@@ -1,6 +1,6 @@
 <?php
 
-namespace HRServices\UI\Providers;
+namespace HRis\UI\Providers;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 

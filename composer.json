@@ -1,8 +1,8 @@
 {
-    "name": "hr-services/ui",
-    "description": "HR Services UI Package.",
+    "name": "hris-saas/ui",
+    "description": "HRis SaaS UI Package.",
     "keywords": [
-        "hr-services",
+        "hris-saas",
         "package",
         "ui"
     ],
@@ -15,23 +15,23 @@
         }
     ],
     "require": {
-        "hr-services/core": "dev-master",
+        "hris-saas/core": "*",
         "intervention/image": "^2.5"
     },
     "support": {
-        "issues": "https://gitlab.com/hr-services/ui/issues",
-        "source": "https://gitlab.com/hr-services/ui"
+        "issues": "https://gitlab.com/hris-saas/bugs/issues",
+        "source": "https://gitlab.com/hris-saas/ui"
     },
     "autoload": {
         "psr-4": {
-            "HRServices\\UI\\": "src"
+            "HRis\\UI\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "HRServices\\UI\\Providers\\UIServiceProvider",
-                "HRServices\\UI\\Providers\\RouteServiceProvider"
+                "HRis\\UI\\Providers\\UIServiceProvider",
+                "HRis\\UI\\Providers\\RouteServiceProvider"
             ]
         }
     },
