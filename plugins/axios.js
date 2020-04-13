@@ -17,6 +17,10 @@ export default ({ app, store, redirect }) => {
   axios.interceptors.request.use((request) => {
     request.baseURL = APP_PROTOCOL + '//' + APP_DOMAIN + '/api'
 
+    if (APP_DOMAIN === 'localhost') {
+      request.baseURL = 'https://tenant1.hris-saas.local/api'
+    }
+
     const token = store.getters['auth/token']
 
     if (token) {

@@ -8,7 +8,8 @@ const page = (path) => () =>
   import(`~/pages/${path}`).then((m) => m.default || m)
 
 const routes = [
-  { path: '/', name: 'dashboard', component: page('dashboard.vue') },
+  { path: '/', name: 'index', component: page('index.vue') },
+  { path: '/dashboard', name: 'dashboard', component: page('dashboard.vue') },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },
   // { path: '/register', name: 'register', component: page('auth/register.vue') },

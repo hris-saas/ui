@@ -95,18 +95,13 @@ export default {
           generator.nuxt.options.dev === false &&
           generator.nuxt.options.mode === 'spa'
         ) {
-          const publicDir = join(
-            generator.nuxt.options.rootDir,
-            '../',
-            'app',
-            'public',
-            '_nuxt'
-          )
+          const publicDir = join(generator.nuxt.options.rootDir, 'build')
+
           removeSync(publicDir)
 
           copySync(
             join(generator.nuxt.options.generate.dir, '_nuxt'),
-            publicDir
+            join(publicDir, '_nuxt')
           )
 
           copySync(
@@ -114,10 +109,7 @@ export default {
             join(publicDir, 'index.html')
           )
 
-          copySync(
-            join(generator.nuxt.options.rootDir, 'static', 'img'),
-            join(publicDir, '../', 'img')
-          )
+          copySync(join(generator.nuxt.options.rootDir, 'static'), publicDir)
 
           removeSync(generator.nuxt.options.generate.dir)
         }

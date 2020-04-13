@@ -14,6 +14,8 @@ class UIServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../../assets/views', 'ui');
+
+        $this->publishes([__DIR__.'/../../build' => public_path()], 'hris-saas::ui');
     }
 
     /**
