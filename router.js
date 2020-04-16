@@ -8,8 +8,12 @@ const page = (path) => () =>
   import(`~/pages/${path}`).then((m) => m.default || m)
 
 const routes = [
-  { path: '/', name: 'index', component: page('index.vue') },
-  { path: '/dashboard', name: 'dashboard', component: page('dashboard.vue') },
+  { path: '', redirect: { name: 'dashboard.index' } },
+  {
+    path: '/dashboard',
+    name: 'dashboard.index',
+    component: page('dashboard.vue')
+  },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },
   // { path: '/register', name: 'register', component: page('auth/register.vue') },
@@ -22,7 +26,7 @@ const routes = [
     path: '/password/reset/:token',
     name: 'password.reset',
     component: page('auth/password/reset.vue')
-  }
+  },
   // {
   //   path: '/email/verify/:id',
   //   name: 'verification.verify',
@@ -52,6 +56,27 @@ const routes = [
   //     }
   //   ]
   // }
+
+  {
+    path: '/employees',
+    name: 'employees',
+    component: page('pim/employees.vue'),
+    redirect: { name: 'employees.index' },
+    children: [
+      {
+        path: '',
+        name: 'employees.index',
+        meta: { title: 'employees' },
+        component: page('pim/employees/index.vue')
+      },
+      {
+        path: ':id',
+        name: 'employees.show',
+        meta: { title: '' },
+        component: page('pim/employees/show.vue')
+      }
+    ]
+  }
 ]
 
 export function createRouter() {
