@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex overflow-hidden bg-gray-100">
-    <Sidebar :open="open" @toggleSidebar="toggleSidebar($event)" />
+    <Sidebar :open="open" :performCleanup="performCleanup" @beforeToggleSidebar="beforeToggleSidebar" @afterToggleSidebar="afterToggleSidebar" @toggleSidebar="toggleSidebar($event)"  />
     <div class="flex flex-col w-0 flex-1 overflow-hidden">
       <Header :open="open" @toggleSidebar="toggleSidebar($event)" />
       <nuxt />
@@ -10,7 +10,8 @@
 <script>
 export default {
   data: () => ({
-    open: true
+    open: true,
+    performCleanup: true,
   }),
   watch: {
     $route() {
@@ -24,6 +25,12 @@ export default {
       } else {
         this.open = !this.open
       }
+    },
+    beforeToggleSidebar() {
+      this.performCleanup = true
+    },
+    afterToggleSidebar() {
+      this.performCleanup = false
     }
   }
 }

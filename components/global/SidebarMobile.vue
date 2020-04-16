@@ -22,6 +22,8 @@
         leave-active-class="transition ease-in-out duration-300 transform"
         leave-class="translate-x-0"
         leave-to-class="-translate-x-full"
+        v-on:before-enter="beforeToggleSidebar"
+        v-on:after-leave="afterToggleSidebar"
       >
         <div
           v-show="open"
@@ -205,6 +207,12 @@ export default {
     },
     toggleSidebar() {
       this.$emit('toggleSidebar')
+    },
+    beforeToggleSidebar() {
+      this.$emit('beforeToggleSidebar')
+    },
+    afterToggleSidebar() {
+      this.$emit('afterToggleSidebar')
     }
   }
 }
