@@ -1,55 +1,31 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="h-screen flex overflow-hidden bg-gray-100">
+    <SidebarMobile :open="open" @toggleSidebar="toggleSidebar" />
+    <SidebarDesktop :open="open" @toggleSidebar="toggleSidebar" />
+    <div class="flex flex-col w-0 flex-1 overflow-hidden">
+      <Header :open="open" @toggleSidebar="toggleSidebar($event)" />
+      <nuxt />
+    </div>
   </div>
 </template>
-
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+<script>
+export default {
+  data: () => ({
+    open: false
+  }),
+  watch: {
+    $route() {
+      this.toggleSidebar(true)
+    }
+  },
+  methods: {
+    toggleSidebar(force) {
+      if (force) {
+        this.open = false
+      } else {
+        this.open = !this.open
+      }
+    }
+  }
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-</style>
+</script>

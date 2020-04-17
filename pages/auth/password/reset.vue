@@ -186,6 +186,7 @@
 import Form from 'vform'
 
 export default {
+  layout: 'auth',
   data: () => ({
     status: '',
     error: '',
