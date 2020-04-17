@@ -22,9 +22,8 @@
             <label
               for="email"
               class="block text-sm font-medium leading-5 text-gray-700"
+              >{{ $t('email_address') }}</label
             >
-              {{ $t('email_address') }}
-            </label>
             <div class="mt-1 relative rounded-md shadow-sm">
               <input
                 id="email"
@@ -32,7 +31,7 @@
                 type="email"
                 name="email"
                 required
-                class="appearance-none block w-full px-3 py-2 border rounded-md focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                class="appearance-none block w-full px-3 py-2 border rounded-md focus:outline-none transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                 :class="{
                   'border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red': form.errors.has(
                     'email'
@@ -71,9 +70,8 @@
             <label
               for="password"
               class="block text-sm font-medium leading-5 text-gray-700"
+              >Password</label
             >
-              Password
-            </label>
             <div class="mt-1 relative rounded-md shadow-sm">
               <input
                 id="password"
@@ -120,18 +118,16 @@
               <label
                 for="remember_me"
                 class="ml-2 block text-sm leading-5 text-gray-900"
+                >{{ $t('remember_me') }}</label
               >
-                {{ $t('remember_me') }}
-              </label>
             </div>
 
             <div class="text-sm leading-5">
               <nuxt-link
                 :to="{ name: 'password.request' }"
                 class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
+                >{{ $t('forgot_password') }}</nuxt-link
               >
-                {{ $t('forgot_password') }}
-              </nuxt-link>
             </div>
           </div>
 
@@ -140,9 +136,8 @@
               <v-button
                 class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
                 :loading="form.busy"
+                >{{ $t('sign_in') }}</v-button
               >
-                {{ $t('sign_in') }}
-              </v-button>
             </span>
           </div>
         </form>
@@ -213,7 +208,7 @@ export default {
       await this.$store.dispatch('auth/fetchUser')
 
       // Redirect home.
-      this.$router.push({ name: 'dashboard' })
+      this.$router.push({ name: 'dashboard.index' })
     }
   },
 

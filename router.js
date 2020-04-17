@@ -8,7 +8,11 @@ const page = (path) => () =>
   import(`~/pages/${path}`).then((m) => m.default || m)
 
 const routes = [
-  { path: '', redirect: { name: 'dashboard.index' } },
+  {
+    path: '/',
+    name: 'index',
+    component: page('index.vue')
+  },
   {
     path: '/dashboard',
     name: 'dashboard.index',
