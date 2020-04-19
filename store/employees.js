@@ -4,6 +4,7 @@ import axios from 'axios'
 export const state = () => ({
   employees: null,
   employee: null,
+  employeeName: null,
   links: null,
   meta: null
 })
@@ -12,6 +13,7 @@ export const state = () => ({
 export const getters = {
   employees: (state) => state.employees,
   employee: (state) => state.employee,
+  employeeName: (state) => state.employeeName,
   links: (state) => state.links,
   meta: (state) => state.meta
 }
@@ -32,12 +34,16 @@ export const mutations = {
 
   FETCH_EMPLOYEES_FAILURE(state) {
     state.employees = null
+    state.employee = null
+    state.employeeName = null
     state.links = null
     state.meta = null
   },
 
   FETCH_EMPLOYEE_DATA_SUCCESS(state, response) {
     state.employee = response
+    state.employeeName =
+      state.employee.first_name + ' ' + state.employee.last_name
   },
 
   FETCH_EMPLOYEE_FAILURE(state) {
@@ -47,9 +53,11 @@ export const mutations = {
 
 // actions
 export const actions = {
-  async fetchEmployees({ commit }) {
+  async fetchEmployees({ commit }, { page }) {
+    page = page || 1
+
     try {
-      const { data } = await axios.get('/employees')
+      const { data } = await axios.get(`/employees?page=${page}`)
 
       commit('FETCH_EMPLOYEES_DATA_SUCCESS', data)
       commit('FETCH_EMPLOYEES_LINKS_SUCCESS', data)

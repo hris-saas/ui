@@ -11,7 +11,7 @@
       <h2
         class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900"
       >
-        Sign in to your account
+        {{ $t('sign_in_to_your_account') }}
       </h2>
     </div>
 
@@ -70,7 +70,7 @@
             <label
               for="password"
               class="block text-sm font-medium leading-5 text-gray-700"
-              >Password</label
+              >{{ $t('password') }}</label
             >
             <div class="mt-1 relative rounded-md shadow-sm">
               <input
@@ -148,9 +148,9 @@
               <div class="w-full border-t border-gray-300"></div>
             </div>
             <div class="relative flex justify-center text-sm leading-5">
-              <span class="px-2 bg-white text-gray-500"
-                >Don't have an account?</span
-              >
+              <span class="px-2 bg-white text-gray-500">{{
+                $t('dont_have_an_account')
+              }}</span>
             </div>
           </div>
 
@@ -161,7 +161,7 @@
                   type="button"
                   class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out"
                 >
-                  Register an account
+                  {{ $t('register_an_account') }}
                 </button>
               </span>
             </div>

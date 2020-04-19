@@ -47,7 +47,7 @@
             href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
             role="menuitem"
-            @click.prevent="logout"
+            @click.prevent="logout()"
             >Sign out</a
           >
         </div>

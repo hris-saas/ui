@@ -1,7 +1,11 @@
 <template>
   <!-- Off-canvas menu for mobile -->
   <div :class="{ '': showElement, hidden: !showElement }" class="md:hidden">
-    <div class="fixed inset-0 flex z-40">
+    <div
+      class="fixed inset-0 flex z-40"
+      tabindex="0"
+      @keydown.esc="toggleSidebar(true)"
+    >
       <transition
         enter-active-class="transition-opacity ease-linear duration-300"
         enter-class="opacity-0"
@@ -22,8 +26,8 @@
         leave-active-class="transition ease-in-out duration-300 transform"
         leave-class="translate-x-0"
         leave-to-class="-translate-x-full"
-        @before-enter="beforeToggleSidebar"
-        @after-leave="afterToggleSidebar"
+        @before-enter="beforeToggleSidebar()"
+        @after-leave="afterToggleSidebar()"
       >
         <div
           v-show="open"

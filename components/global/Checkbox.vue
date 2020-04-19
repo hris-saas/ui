@@ -6,7 +6,7 @@
       :checked="internalValue"
       type="checkbox"
       class="custom-control-input"
-      @click="handleClick"
+      @click="handleClick()"
     />
     <label :for="id || name" class="custom-control-label my-auto">
       <slot />

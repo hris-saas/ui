@@ -4,7 +4,9 @@
     tabindex="0"
   >
     <div class="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
-      <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+      <h1 class="text-2xl font-semibold text-gray-900">
+        {{ $t('dashboard') }}
+      </h1>
     </div>
     <div class="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
       <div class="py-4">
@@ -18,6 +20,9 @@
 <script>
 export default {
   middleware: 'auth',
-  layout: 'default'
+  layout: 'default',
+  head() {
+    return { title: this.$t('dashboard') }
+  }
 }
 </script>

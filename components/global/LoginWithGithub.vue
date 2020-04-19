@@ -3,7 +3,7 @@
     v-if="githubAuth"
     type="button"
     class="btn btn-dark ml-auto"
-    @click="login"
+    @click="login()"
   >
     {{ $t('login_with') }}
     <fa :icon="['fab', 'github']" />

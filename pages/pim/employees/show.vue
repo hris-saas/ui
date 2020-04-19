@@ -19,14 +19,14 @@
                 clip-rule="evenodd"
               />
             </svg>
-            Back
+            {{ $t('back') }}
           </nuxt-link>
         </nav>
         <nav class="hidden sm:flex items-center text-sm leading-5 font-medium">
           <nuxt-link
             :to="{ name: 'employees.index' }"
             class="text-gray-500 hover:text-gray-700 focus:outline-none focus:underline transition duration-150 ease-in-out"
-            >Employees
+            >{{ $t('employees') }}
           </nuxt-link>
           <svg
             class="flex-shrink-0 mx-2 h-5 w-5 text-gray-400"
@@ -56,6 +56,152 @@
           </h2>
         </div>
       </div>
+      <div class="py-4">
+        <div class="bg-white shadow overflow-hidden  sm:rounded-lg">
+          <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+              {{ $t('personal_information') }}
+            </h3>
+          </div>
+          <div class="px-4 py-5 sm:px-6">
+            <dl class="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2">
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('salutation') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.salutation }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('full_name') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.first_name }} {{ employee.last_name }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('gender') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.gender == 'm' ? 'Male' : 'Female' }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('marital_status') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.marital_status }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('identity_no') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.identity_no }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('employee_no') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.employee_no }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('nickname') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.nickname }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('status') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.is_active ? 'Active' : 'Inactive' }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('date_of_birth') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.date_of_birth }}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="py-4">
+        <div class="bg-white shadow overflow-hidden  sm:rounded-lg">
+          <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">
+              {{ $t('contact_information') }}
+            </h3>
+          </div>
+          <div class="px-4 py-5 sm:px-6">
+            <dl class="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2">
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('work_phone') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.work_phone }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('work_phone_ext') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.work_phone_ext }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('mobile_phone') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.mobile_phone }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('home_phone') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.home_phone }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('work_email') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.work_email }}
+                </dd>
+              </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('personal_email') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.personal_email }}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -67,7 +213,8 @@ export default {
   layout: 'default',
   computed: {
     ...mapGetters({
-      employee: 'employees/employee'
+      employee: 'employees/employee',
+      title: 'employees/employeeName'
     })
   },
   async created() {
@@ -77,6 +224,9 @@ export default {
     ...mapActions({
       fetchEmployee: 'employees/fetchEmployee'
     })
+  },
+  head() {
+    return { title: this.title ? this.title : 'HRis SaaS' }
   }
 }
 </script>

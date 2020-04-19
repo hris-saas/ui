@@ -11,10 +11,10 @@
       <h2
         class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900"
       >
-        Reset your password
+        {{ $t('reset_your_password') }}
       </h2>
       <p class="mt-5 text-sm leading-5 text-center text-gray-600">
-        Enter your email and we'll send you a link to reset your password.
+        {{ $t('reset_your_password_description') }}
       </p>
     </div>
 
@@ -79,7 +79,7 @@
                 class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
                 :loading="form.busy"
               >
-                Send password reset email
+                {{ $t('send_password_reset_email') }}
               </v-button>
             </span>
           </div>
@@ -91,9 +91,9 @@
               <div class="w-full border-t border-gray-300"></div>
             </div>
             <div class="relative flex justify-center text-sm leading-5">
-              <span class="px-2 bg-white text-gray-500"
-                >Don't have an account?</span
-              >
+              <span class="px-2 bg-white text-gray-500">{{
+                $t('dont_have_an_account')
+              }}</span>
             </div>
           </div>
 
