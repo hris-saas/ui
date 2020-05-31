@@ -24,7 +24,7 @@ class UIAssetsNotFoundSolution implements RunnableSolution
 
     public function getSolutionActionDescription(): string
     {
-        return '';
+        return 'Click the button below to let the app run the above artisan command for you.';
     }
 
     public function getRunButtonText(): string

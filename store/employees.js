@@ -34,8 +34,6 @@ export const mutations = {
 
   FETCH_EMPLOYEES_FAILURE(state) {
     state.employees = null
-    state.employee = null
-    state.employeeName = null
     state.links = null
     state.meta = null
   },
