@@ -26,8 +26,8 @@
           <nuxt-link
             :to="{ name: 'employees.index' }"
             class="text-gray-500 hover:text-gray-700 focus:outline-none focus:underline transition duration-150 ease-in-out"
-            >{{ $t('employees') }}
-          </nuxt-link>
+            >{{ $t('employees') }}</nuxt-link
+          >
         </nav>
       </div>
       <!-- stop breadcrumb -->
@@ -54,7 +54,11 @@
                   <div class="flex-shrink-0">
                     <img
                       class="h-12 w-12 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      :src="
+                        'https://randomuser.me/api/portraits/' +
+                          (employee.gender == 'm' ? 'men' : 'women') +
+                          ('/' + employee.id + '.jpg')
+                      "
                       alt
                     />
                   </div>
@@ -81,9 +85,7 @@
                             clip-rule="evenodd"
                           />
                         </svg>
-                        <span class="truncate">
-                          {{ employee.work_email }}
-                        </span>
+                        <span class="truncate">{{ employee.work_email }}</span>
                       </div>
                     </div>
                     <div class="hidden md:block">
