@@ -78,6 +78,18 @@ const routes = [
         name: 'employees.show',
         meta: { title: '' },
         component: page('pim/employees/show.vue')
+      },
+      {
+        path: ':id/direct-reports',
+        name: 'direct-report.index',
+        meta: { title: 'Direct Reports' },
+        component: page('pim/employees/direct-reports/index.vue')
+      },
+      {
+        path: ':id/indirect-reports',
+        name: 'indirect-report.index',
+        meta: { title: 'Indirect Reports' },
+        component: page('pim/employees/indirect-reports/index.vue')
       }
     ]
   }

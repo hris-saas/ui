@@ -72,6 +72,22 @@
               Publish
             </button>
           </span>
+          <span class="ml-3 shadow-sm rounded-md">
+            <nuxt-link
+              :to="{ name: 'direct-report.index' }"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 transition duration-150 ease-in-out"
+            >
+              {{ $t('direct_reports') }}
+            </nuxt-link>
+          </span>
+          <span class="ml-3 shadow-sm rounded-md">
+            <nuxt-link
+              :to="{ name: 'indirect-report.index' }"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 transition duration-150 ease-in-out"
+            >
+              {{ $t('indirect_reports') }}
+            </nuxt-link>
+          </span>
         </div>
       </div>
       <div class="py-4">

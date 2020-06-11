@@ -68,5 +68,9 @@
   "mobile_phone": "Mobile Phone",
   "home_phone": "Home Phone",
   "work_email": "Work Email",
-  "personal_email": "Personal Email"
+  "personal_email": "Personal Email",
+  
+  "direct_reports": "Direct Reports",
+  "indirect_reports": "Indirect Reports",
+  "back_to_employee": "Back To Employee"
 }
