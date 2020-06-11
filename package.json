@@ -1,7 +1,7 @@
 {
-  "name": "nuxt",
+  "name": "hris-saas-ui",
   "version": "1.0.0",
-  "description": "My posh Nuxt.js project",
+  "description": "HRis SaaS UI Package.",
   "author": "Bertrand Kintanar",
   "private": true,
   "scripts": {
