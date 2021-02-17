@@ -171,6 +171,14 @@
                   {{ employee.date_of_birth }}
                 </dd>
               </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                  {{ $t('uuid') }}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900">
+                  {{ employee.uuid }}
+                </dd>
+              </div>
             </dl>
           </div>
         </div>

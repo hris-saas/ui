@@ -78,7 +78,7 @@
         <ul>
           <li v-for="(employee, key) in employeeIndirectReports" :key="key">
             <nuxt-link
-              :to="{ name: 'employees.show', params: { id: employee.id } }"
+              :to="{ name: 'employees.show', params: { id: employee.uuid } }"
               class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
             >
               <div class="flex items-center px-4 py-4 sm:px-6">
