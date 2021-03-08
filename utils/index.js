@@ -5,7 +5,7 @@
  * @param  {String} key
  * @return {String|undefined}
  */
-export function cookieFromRequest(req, key) {
+export function cookieFromRequest (req, key) {
   if (!req.headers.cookie) {
     return
   }
@@ -22,7 +22,7 @@ export function cookieFromRequest(req, key) {
 /**
  * https://router.vuejs.org/en/advanced/scroll-behavior.html
  */
-export function scrollBehavior(to, from, savedPosition) {
+export function scrollBehavior (to, from, savedPosition) {
   if (savedPosition) {
     return savedPosition
   }
@@ -31,7 +31,7 @@ export function scrollBehavior(to, from, savedPosition) {
 
   if (to.matched.length < 2) {
     position = { x: 0, y: 0 }
-  } else if (to.matched.some((r) => r.components.default.options.scrollToTop)) {
+  } else if (to.matched.some(r => r.components.default.options.scrollToTop)) {
     position = { x: 0, y: 0 }
   }
   if (to.hash) {

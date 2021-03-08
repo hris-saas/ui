@@ -1,6 +1,4 @@
-# nuxt
-
-> My posh Nuxt.js project
+# HRis-SaaS ui
 
 ## Build Setup
 
