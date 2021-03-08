@@ -1,11 +1,11 @@
-import axios from 'axios'
+// import axios from 'axios'
 // import swal from 'sweetalert2'
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 export default ({ app, store, redirect }) => {
-  const APP_DOMAIN = location.hostname
-  const APP_PROTOCOL = location.protocol
+  // const APP_DOMAIN = location.hostname
+  // const APP_PROTOCOL = location.protocol
 
   app.$axios.defaults.baseURL = 'http://' + location.hostname + ':3000'
   app.$axios.defaults.withCredentials = true
@@ -16,11 +16,11 @@ export default ({ app, store, redirect }) => {
 
   // Request interceptor
   app.$axios.interceptors.request.use((request) => {
-    request.baseURL = APP_PROTOCOL + '//' + APP_DOMAIN + '/api'
+    // request.baseURL = APP_PROTOCOL + '//' + APP_DOMAIN + '/api'
 
-    if (APP_DOMAIN === 'local') {
-      request.baseURL = 'http://tenant1.hris-saas.local/api'
-    }
+    // if (APP_DOMAIN === 'local') {
+    request.baseURL = 'http://tenant1.hris-saas.local/api'
+    // }
 
     const locale = store.getters['lang/locale']
     if (locale) {

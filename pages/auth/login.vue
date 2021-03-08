@@ -18,6 +18,7 @@
               <input
                 id="email"
                 v-model="form.email"
+                :disabled="form.busy"
                 name="email"
                 type="email"
                 autocomplete="email"
@@ -51,6 +52,7 @@
               <input
                 id="password"
                 v-model="form.password"
+                :disabled="form.busy"
                 name="password"
                 type="password"
                 autocomplete="current-password"
@@ -70,7 +72,7 @@
 
           <div class="flex items-center justify-between">
             <div class="flex items-center">
-              <input id="remember_me" v-model="form.remember" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+              <input id="remember_me" v-model="form.remember" :disabled="form.busy" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
               <label for="remember_me" class="ml-2 block text-sm text-gray-900">
                 {{ $t('remember_me') }}
               </label>
@@ -111,7 +113,7 @@
           <div class="mt-6">
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out">
+                <button type="button" :disabled="form.busy" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out">
                   {{ $t('register_an_account') }}
                 </button>
               </span>
