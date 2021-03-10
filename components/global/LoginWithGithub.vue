@@ -19,16 +19,16 @@ export default {
     url: () => `${process.env.apiUrl}/oauth/github`
   },
 
-  mounted() {
+  mounted () {
     window.addEventListener('message', this.onMessage, false)
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('message', this.onMessage)
   },
 
   methods: {
-    async login() {
+    async login () {
       const newWindow = openWindow('', this.$t('login'))
 
       const url = await this.$store.dispatch('auth/fetchOauthUrl', {
@@ -41,7 +41,7 @@ export default {
     /**
      * @param {MessageEvent} e
      */
-    onMessage(e) {
+    onMessage (e) {
       if (!process.env.apiUrl.includes(e.origin)) {
         // throw new Error('Origin not matching')
         return
@@ -60,7 +60,7 @@ export default {
  * @param  {Object} options
  * @return {Window}
  */
-function openWindow(url, title, options = {}) {
+function openWindow (url, title, options = {}) {
   if (typeof url === 'object') {
     options = url
     url = ''

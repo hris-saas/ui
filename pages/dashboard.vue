@@ -12,16 +12,16 @@
       <div class="py-4">
         <div
           class="border-4 border-dashed border-gray-200 rounded-lg h-96"
-        ></div>
+        />
       </div>
     </div>
   </main>
 </template>
 <script>
 export default {
-  middleware: 'auth',
   layout: 'default',
-  head() {
+  middleware: 'auth',
+  head () {
     return { title: this.$t('dashboard') }
   }
 }

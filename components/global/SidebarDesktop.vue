@@ -7,7 +7,7 @@
           class="h-8 w-auto"
           src="/img/logos/workflow-logo-on-dark.svg"
           alt="Workflow"
-        />
+        >
       </div>
       <div class="h-0 flex-1 flex flex-col overflow-y-auto">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
@@ -149,10 +149,10 @@ export default {
     open: Boolean
   },
   methods: {
-    routeIs(route) {
+    routeIs (route) {
       return this.$route.name.includes(route)
     },
-    toggleSidebar() {
+    toggleSidebar () {
       this.$emit('toggleSidebar')
     }
   }

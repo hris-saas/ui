@@ -18,12 +18,12 @@ export default {
     open: false
   }),
   watch: {
-    $route() {
+    $route () {
       this.toggleSidebar(true)
     }
   },
   methods: {
-    toggleSidebar(force) {
+    toggleSidebar (force) {
       if (force) {
         this.open = false
       } else {

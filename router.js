@@ -4,8 +4,8 @@ import { scrollBehavior } from '~/utils'
 
 Vue.use(Router)
 
-const page = (path) => () =>
-  import(`~/pages/${path}`).then((m) => m.default || m)
+const page = path => () =>
+  import(`~/pages/${path}`).then(m => m.default || m)
 
 const routes = [
   {
@@ -26,11 +26,11 @@ const routes = [
     name: 'password.request',
     component: page('auth/password/email.vue')
   },
-  // {
-  //   path: '/password/reset/:token',
-  //   name: 'password.reset',
-  //   component: page('auth/password/reset.vue')
-  // },
+  {
+    path: '/password/reset/:token',
+    name: 'password.reset',
+    component: page('auth/password/reset.vue')
+  }
   // {
   //   path: '/email/verify/:id',
   //   name: 'verification.verify',
@@ -95,7 +95,7 @@ const routes = [
   // }
 ]
 
-export function createRouter() {
+export function createRouter () {
   return new Router({
     routes,
     scrollBehavior,

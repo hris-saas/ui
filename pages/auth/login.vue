@@ -9,7 +9,7 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" @submit.prevent="login"  @keydown="form.onKeydown($event)">
+        <form class="space-y-6" @submit.prevent="login" @keydown="form.onKeydown($event)">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">
               {{ $t('email_address') }}
@@ -72,7 +72,14 @@
 
           <div class="flex items-center justify-between">
             <div class="flex items-center">
-              <input id="remember_me" v-model="form.remember" :disabled="form.busy" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+              <input
+                id="remember_me"
+                v-model="form.remember"
+                :disabled="form.busy"
+                name="remember_me"
+                type="checkbox"
+                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              >
               <label for="remember_me" class="ml-2 block text-sm text-gray-900">
                 {{ $t('remember_me') }}
               </label>
@@ -81,7 +88,8 @@
             <div class="text-sm">
               <nuxt-link
                 :to="{ name: 'password.request' }"
-                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
+              >
                 {{ $t('forgot_password') }}
               </nuxt-link>
             </div>
@@ -90,8 +98,15 @@
           <div>
             <button type="submit" :disabled="form.busy" class="disabled:opacity-50 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               <svg v-if="form.busy" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
               {{ $t('sign_in') }}
             </button>
@@ -136,7 +151,7 @@ export default {
       email: '',
       password: '',
       remember: false
-    }),
+    })
   }),
   head () {
     return { title: this.$t('login') }
@@ -146,15 +161,15 @@ export default {
       try {
         this.form.startProcessing()
 
-        await this.$auth.loginWith('laravelSanctum', {data: this.form})
+        await this.$auth.loginWith('laravelSanctum', { data: this.form })
       } catch (error) {
         this.form.finishProcessing()
 
-        const errors = error.response.data.errors;
+        const errors = error.response.data.errors
         if (typeof errors !== 'undefined') {
           if (typeof errors.email[0] !== 'undefined') {
+            this.form.errors.set('email', errors.email[0])
           }
-          this.form.errors.set('email', errors.email[0])
         }
       }
     }

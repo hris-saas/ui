@@ -15,7 +15,7 @@
         leave-to-class="opacity-0"
       >
         <div v-show="open" class="fixed inset-0" @click="toggleSidebar(true)">
-          <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
+          <div class="absolute inset-0 bg-gray-600 opacity-75" />
         </div>
       </transition>
 
@@ -59,7 +59,7 @@
               class="h-8 w-auto"
               src="/img/logos/workflow-logo-on-dark.svg"
               alt="Workflow"
-            />
+            >
           </div>
           <div class="mt-5 flex-1 h-0 overflow-y-auto">
             <nav class="px-2">
@@ -209,16 +209,16 @@ export default {
     showElement: false
   }),
   methods: {
-    routeIs(route) {
+    routeIs (route) {
       return this.$route.name.includes(route)
     },
-    toggleSidebar(force) {
+    toggleSidebar (force) {
       this.$emit('toggleSidebar', force)
     },
-    beforeToggleSidebar() {
+    beforeToggleSidebar () {
       this.showElement = true
     },
-    afterToggleSidebar() {
+    afterToggleSidebar () {
       this.showElement = false
     }
   }

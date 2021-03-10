@@ -103,12 +103,12 @@ export default {
     }
   },
   methods: {
-    prev() {
+    prev () {
       const page = this.meta.current_page - 1
       this.$router.push({ name: this.$route.name, query: { page } })
       this.$emit('paginate', page)
     },
-    next() {
+    next () {
       const page = this.meta.current_page + 1
       this.$router.push({ name: this.$route.name, query: { page } })
       this.$emit('paginate', page)

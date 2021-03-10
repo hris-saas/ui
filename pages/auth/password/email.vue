@@ -12,7 +12,7 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form class="space-y-6" @submit.prevent="send" @keydown="form.onKeydown($event)">
+        <form class="space-y-6" @submit.prevent="send" @keydown="form.onKeydown($event)">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">
               {{ $t('email_address') }}
@@ -52,8 +52,15 @@
           <div>
             <button type="submit" :disabled="form.busy" class="disabled:opacity-50 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               <svg v-if="form.busy" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
               {{ $t('send_password_reset_email') }}
             </button>
@@ -94,35 +101,24 @@ export default {
   layout: 'auth',
   middleware: 'guest',
   data: () => ({
+    status: '',
     form: new Form({
       email: ''
-    }),
-    status: ''
+    })
   }),
   head () {
     return { title: this.$t('reset_password') }
   },
   methods: {
-    async send() {
+    async send () {
       try {
         this.status = ''
-        this.form.startProcessing()
-        await this.$axios.post('/password/email', this.form)
-          .then(response => {
-            this.form.finishProcessing()
+        this.form.reset()
 
-            this.status = response.data.status
-          })
+        const response = await this.form.post('/password/email')
 
-      } catch (error) {
-        this.form.finishProcessing()
-
-        const errors = error.response.data;
-
-        if (typeof errors.email !== 'undefined') {
-          this.form.errors.set('email', errors.email)
-        }
-      }
+        this.status = response.data.status
+      } catch (error) {}
     }
   }
 }

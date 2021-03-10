@@ -7,7 +7,7 @@ export default ({ app, store, redirect }) => {
   // const APP_DOMAIN = location.hostname
   // const APP_PROTOCOL = location.protocol
 
-  app.$axios.defaults.baseURL = 'http://' + location.hostname + ':3000'
+  // app.$axios.defaults.baseURL = 'http://' + location.hostname + ':3000'
   app.$axios.defaults.withCredentials = true
 
   // if (process.server) {

@@ -40,7 +40,7 @@
               class="block w-full h-full pl-8 pr-3 py-2 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 sm:text-sm"
               placeholder="Search"
               type="search"
-            />
+            >
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@ export default {
     open: Boolean
   },
   methods: {
-    toggleSidebar() {
+    toggleSidebar () {
       this.$emit('toggleSidebar')
     }
   }

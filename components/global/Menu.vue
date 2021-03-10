@@ -11,7 +11,7 @@
         class="h-8 w-8 rounded-full"
         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
         alt=""
-      />
+      >
     </button>
     <transition
       enter-active-class="transition ease-out duration-100"
@@ -35,21 +35,18 @@
             href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
             role="menuitem"
-            >Your Profile</a
-          >
+          >Your Profile</a>
           <a
             href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
             role="menuitem"
-            >Settings</a
-          >
+          >Settings</a>
           <a
             href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
             role="menuitem"
             @click.prevent="logout()"
-            >Sign out</a
-          >
+          >Sign out</a>
         </div>
       </div>
     </transition>
@@ -67,18 +64,18 @@ export default {
     open: false
   }),
   watch: {
-    $route() {
+    $route () {
       this.hideMenu()
     }
   },
   methods: {
-    toggleMenu() {
+    toggleMenu () {
       this.open = !this.open
     },
-    hideMenu() {
+    hideMenu () {
       this.open = false
     },
-    async logout() {
+    async logout () {
       this.hideMenu()
 
       // Log out the user.

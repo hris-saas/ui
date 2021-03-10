@@ -39,7 +39,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~plugins/i18n',
-    '~plugins/axios'
+    '~plugins/axios',
+    '~plugins/vform'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

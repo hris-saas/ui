@@ -12,7 +12,7 @@ export function cookieFromRequest (req, key) {
 
   const cookie = req.headers.cookie
     .split(';')
-    .find((c) => c.trim().startsWith(`${key}=`))
+    .find(c => c.trim().startsWith(`${key}=`))
 
   if (cookie) {
     return cookie.split('=')[1]
