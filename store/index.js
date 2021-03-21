@@ -24,5 +24,5 @@ export const actions = {
     if (locale) {
       commit('lang/SET_LOCALE', { locale })
     }
-  }
+  },
 }

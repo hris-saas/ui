@@ -5,87 +5,69 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 export default {
-  mode: 'spa',
-  /*
-   ** Headers of the page
-   */
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: false,
+
+  // Target: https://go.nuxtjs.dev/config-target
+  target: 'static',
+
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: process.env.APP_NAME,
-    titleTemplate: '%s - ' + process.env.APP_NAME,
+    title: 'Loading',
+    titleTemplate: '%s - HRis SaaS',
+    htmlAttrs: {
+      lang: 'en',
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'HRis SaaS' }
+      { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
-  },
-  env: {
-    apiUrl: 'http://tenant1.hris-saas.local/api',
-    appName: 'Laravel Nuxt',
-    appLocale: 'en'
-  },
-  /*
-   ** Customize the progress-bar color
-   */
-  loading: { color: '#007bff' },
-
-  router: {
-    middleware: ['locale', 'check-auth']
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  /*
-   ** Global CSS
-   */
+  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
-  /*
-   ** Plugins to load before mounting the App
-   */
+
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~components/global',
     '~plugins/axios',
     '~plugins/i18n',
+    '~plugins/nuxt-client-init',
     '~plugins/vform',
-    '~plugins/nuxt-client-init'
-  ],
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module',
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss'
-  ],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/router',
-    '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    { src: '~plugins/infiniteloading', ssr: false },
   ],
 
-  auth: {
-    // Options
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  buildModules: [
+    '@nuxt/postcss8',
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/tailwindcss',
+  ],
+
+  // Modules: https://go.nuxtjs.dev/config-modules
+  modules: [
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',
+    '@nuxtjs/router',
+  ],
+
+  router: {
+    middleware: ['check-auth', 'locale'],
   },
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
-  /*
-   ** Build configuration
-   */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    baseURL: 'https://tenant1.hris-saas.local/api',
+    credentials: true,
   },
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {},
 
   hooks: {
     generate: {
@@ -113,7 +95,7 @@ export default {
 
           removeSync(generator.nuxt.options.generate.dir)
         }
-      }
-    }
-  }
+      },
+    },
+  },
 }

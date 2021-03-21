@@ -11,12 +11,12 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: page('index.vue')
+    component: page('index.vue'),
   },
   {
     path: '/dashboard',
     name: 'dashboard.index',
-    component: page('dashboard.vue')
+    component: page('dashboard.vue'),
   },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },
@@ -24,12 +24,12 @@ const routes = [
   {
     path: '/password/reset',
     name: 'password.request',
-    component: page('auth/password/email.vue')
+    component: page('auth/password/email.vue'),
   },
   {
     path: '/password/reset/:token',
     name: 'password.reset',
-    component: page('auth/password/reset.vue')
+    component: page('auth/password/reset.vue'),
   },
   // {
   //   path: '/email/verify/:id',
@@ -71,34 +71,34 @@ const routes = [
         path: '',
         name: 'employees.index',
         meta: { title: 'employees' },
-        component: page('pim/employees/index.vue')
+        component: page('pim/employees/index.vue'),
       },
-      {
-        path: ':id',
-        name: 'employees.show',
-        meta: { title: '' },
-        component: page('pim/employees/show.vue')
-      },
-      {
-        path: ':id/direct-reports',
-        name: 'direct-report.index',
-        meta: { title: 'Direct Reports' },
-        component: page('pim/employees/direct-reports/index.vue')
-      },
-      {
-        path: ':id/indirect-reports',
-        name: 'indirect-report.index',
-        meta: { title: 'Indirect Reports' },
-        component: page('pim/employees/indirect-reports/index.vue')
-      }
-    ]
-  }
+      //     {
+      //       path: ':id',
+      //       name: 'employees.show',
+      //       meta: { title: '' },
+      //       component: page('pim/employees/show.vue'),
+      //     },
+      //     {
+      //       path: ':id/direct-reports',
+      //       name: 'direct-report.index',
+      //       meta: { title: 'Direct Reports' },
+      //       component: page('pim/employees/direct-reports/index.vue'),
+      //     },
+      //     {
+      //       path: ':id/indirect-reports',
+      //       name: 'indirect-report.index',
+      //       meta: { title: 'Indirect Reports' },
+      //       component: page('pim/employees/indirect-reports/index.vue'),
+      //     },
+    ],
+  },
 ]
 
 export function createRouter() {
   return new Router({
     routes,
     scrollBehavior,
-    mode: 'history'
+    mode: 'history',
   })
 }

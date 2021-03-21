@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 // state
 export const state = () => ({
   employees: null,
@@ -7,25 +5,54 @@ export const state = () => ({
   employeeName: null,
   employeeDirectReports: null,
   employeeIndirectReports: null,
+  employeesForDirectory: null,
+  employeesForDirectoryPage: 1,
   links: null,
-  meta: null
+  meta: null,
 })
 
 // getters
 export const getters = {
   employees: (state) => state.employees,
+  employeesForDirectory: (state) => state.employeesForDirectory,
   employee: (state) => state.employee,
   employeeName: (state) => state.employeeName,
   employeeDirectReports: (state) => state.employeeDirectReports,
   employeeIndirectReports: (state) => state.employeeIndirectReports,
   links: (state) => state.links,
-  meta: (state) => state.meta
+  meta: (state) => state.meta,
 }
 
 // mutations
 export const mutations = {
   FETCH_EMPLOYEES_DATA_SUCCESS(state, response) {
     state.employees = response.data
+  },
+  FETCH_EMPLOYEES_FOR_DIRECTORY_DATA_SUCCESS(state, response) {
+    // Merge data if requested page > 1
+    if (response.page > 1) {
+      const mergedData = state.employeesForDirectory
+      const data = response.data.data
+
+      for (const [initial, employees] of Object.entries(data)) {
+        for (let i = 0; i < employees.length; i++) {
+          // Init index if it does not exist yet.
+          if (typeof mergedData[initial] === 'undefined') {
+            mergedData[initial] = []
+          }
+
+          mergedData[initial].push(employees[i])
+        }
+      }
+
+      state.employeesForDirectoryPage = response.page
+
+      // For some reason the state needs to bet set to null to reflect changes.
+      state.employeesForDirectory = null
+      state.employeesForDirectory = mergedData
+    } else {
+      state.employeesForDirectory = response.data.data
+    }
   },
 
   FETCH_EMPLOYEES_LINKS_SUCCESS(state, response) {
@@ -38,6 +65,8 @@ export const mutations = {
 
   FETCH_EMPLOYEES_FAILURE(state) {
     state.employees = null
+    state.employeesForDirectory = null
+    state.employeesForDirectoryPage = 1
     state.links = null
     state.meta = null
   },
@@ -70,7 +99,7 @@ export const mutations = {
 
   FETCH_EMPLOYEE_FAILURE(state) {
     state.employee = null
-  }
+  },
 }
 
 // actions
@@ -79,9 +108,26 @@ export const actions = {
     page = page || 1
 
     try {
-      const { data } = await axios.get(`/employees?page=${page}`)
+      const { data } = await this.$axios.get(`/employees?page=${page}`)
 
       commit('FETCH_EMPLOYEES_DATA_SUCCESS', data)
+      commit('FETCH_EMPLOYEES_LINKS_SUCCESS', data)
+      commit('FETCH_EMPLOYEES_META_SUCCESS', data)
+    } catch (e) {
+      commit('FETCH_EMPLOYEES_FAILURE')
+    }
+  },
+  async fetchEmployeesForDirectory({ commit }, { page }) {
+    page = page || 1
+
+    try {
+      const { data } = await this.$axios.get(
+        `/employees?orderBy=last_name&groupBy=last_name&page=${page}`
+      )
+
+      const response = { data, page }
+
+      commit('FETCH_EMPLOYEES_FOR_DIRECTORY_DATA_SUCCESS', response)
       commit('FETCH_EMPLOYEES_LINKS_SUCCESS', data)
       commit('FETCH_EMPLOYEES_META_SUCCESS', data)
     } catch (e) {
@@ -91,8 +137,8 @@ export const actions = {
   async fetchEmployee({ commit }, { id }) {
     try {
       const {
-        data: { data }
-      } = await axios.get('/employees/' + id)
+        data: { data },
+      } = await this.$axios.get('/employees/' + id)
 
       commit('FETCH_EMPLOYEE_DATA_SUCCESS', data)
     } catch (e) {
@@ -103,7 +149,7 @@ export const actions = {
     page = page || 1
 
     try {
-      const { data } = await axios.get(
+      const { data } = await this.$axios.get(
         `/employees/${id}/direct-reports?page=${page}`
       )
 
@@ -118,7 +164,7 @@ export const actions = {
     page = page || 1
 
     try {
-      const { data } = await axios.get(
+      const { data } = await this.$axios.get(
         `/employees/${id}/indirect-reports?page=${page}`
       )
 
@@ -128,5 +174,5 @@ export const actions = {
     } catch (e) {
       commit('FETCH_EMPLOYEE_INDIRECT_REPORTS_FAILURE')
     }
-  }
+  },
 }

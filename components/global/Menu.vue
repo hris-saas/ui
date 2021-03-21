@@ -1,18 +1,24 @@
 <template>
-  <div v-click-outside="hideMenu" class="ml-3 relative">
-    <button
-      id="user-menu"
-      class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline"
-      aria-label="User menu"
-      aria-haspopup="true"
-      @click="toggleMenu()"
-    >
-      <img
-        class="h-8 w-8 rounded-full"
-        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-        alt=""
-      />
-    </button>
+  <!-- Profile dropdown -->
+  <div v-click-outside="hideMenu" class="ml-3 relative" @keydown.esc="hideMenu">
+    <div>
+      <button
+        id="user-menu"
+        type="button"
+        class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        aria-expanded="false"
+        aria-haspopup="true"
+        @click="toggleMenu()"
+      >
+        <span class="sr-only">{{ $t('open_user_menu') }}</span>
+        <img
+          class="h-8 w-8 rounded-full"
+          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=5G0gU1jGpX&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          alt=""
+        />
+      </button>
+    </div>
+
     <transition
       enter-active-class="transition ease-out duration-100"
       enter-class="transform opacity-0 scale-95"
@@ -23,34 +29,35 @@
     >
       <div
         v-if="open"
-        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="user-menu"
       >
-        <div
-          class="py-1 rounded-md bg-white shadow-xs"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="user-menu"
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          role="menuitem"
         >
-          <a
-            href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
-            role="menuitem"
-            >Your Profile</a
-          >
-          <a
-            href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
-            role="menuitem"
-            >Settings</a
-          >
-          <a
-            href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
-            role="menuitem"
-            @click.prevent="logout()"
-            >Sign out</a
-          >
-        </div>
+          {{ $t('your_profile') }}
+        </a>
+
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          role="menuitem"
+        >
+          {{ $t('settings') }}
+        </a>
+
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          role="menuitem"
+          @click.prevent="logout()"
+        >
+          {{ $t('logout') }}
+        </a>
       </div>
     </transition>
   </div>
@@ -61,15 +68,15 @@ import ClickOutside from 'vue-click-outside'
 export default {
   name: 'Menu',
   directives: {
-    ClickOutside
+    ClickOutside,
   },
   data: () => ({
-    open: false
+    open: false,
   }),
   watch: {
     $route() {
       this.hideMenu()
-    }
+    },
   },
   methods: {
     toggleMenu() {
@@ -86,7 +93,7 @@ export default {
 
       // Redirect to index.
       this.$router.push({ name: 'index' })
-    }
-  }
+    },
+  },
 }
 </script>

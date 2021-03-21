@@ -1,11 +1,10 @@
-import axios from 'axios'
 import { loadMessages } from '~/plugins/i18n'
 
-export default async ({ store }) => {
+export default async ({ store, $axios }) => {
   if (process.server) {
     const locale = store.getters['lang/locale']
     if (locale) {
-      axios.defaults.headers.common['Accept-Language'] = locale
+      $axios.defaults.headers.common['Accept-Language'] = locale
     }
   }
 
