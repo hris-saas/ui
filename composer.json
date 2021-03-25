@@ -14,8 +14,15 @@
             "role": "Creator & Designer"
         }
     ],
+    "repositories": [
+      {
+        "type": "path",
+        "url": "../core"
+      }
+    ],
     "require": {
         "hris-saas/core": "*",
+        "facade/ignition": "^2.5",
         "intervention/image": "^2.5"
     },
     "support": {

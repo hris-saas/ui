@@ -1,7 +1,8 @@
 <template>
   <div
     v-show="hasError"
-    class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+    class="absolute inset-y-0 right-0 flex items-center pointer-events-none"
+    :class="{ 'pr-8': isSelect, 'pr-3': !isSelect }"
   >
     <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -19,6 +20,10 @@ export default {
 
   props: {
     hasError: {
+      type: Boolean,
+      default: false,
+    },
+    isSelect: {
       type: Boolean,
       default: false,
     },

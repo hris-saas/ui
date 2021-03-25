@@ -6,6 +6,7 @@ export const state = () => ({
   employeeDirectReports: null,
   employeeIndirectReports: null,
   employeesForDirectory: null,
+  employeesForSelect: null,
   employeesForDirectoryPage: 1,
   links: null,
   meta: null,
@@ -15,6 +16,7 @@ export const state = () => ({
 export const getters = {
   employees: (state) => state.employees,
   employeesForDirectory: (state) => state.employeesForDirectory,
+  employeesForSelect: (state) => state.employeesForSelect,
   employee: (state) => state.employee,
   employeeName: (state) => state.employeeName,
   employeeDirectReports: (state) => state.employeeDirectReports,
@@ -77,6 +79,29 @@ export const mutations = {
       state.employee.first_name + ' ' + state.employee.last_name
   },
 
+  FETCH_EMPLOYEES_FOR_SELECT_DATA_SUCCESS(state, response) {
+    const data = response.data
+
+    const list = []
+    for (let i = 0; i < data.length; i++) {
+      const name =
+        data[i].first_name +
+        ' ' +
+        data[i].last_name +
+        ' (' +
+        data[i].work_email +
+        ')'
+
+      list.push({ id: data[i].id, name })
+    }
+
+    state.employeesForSelect = list
+  },
+
+  FETCH_EMPLOYEES_FOR_SELECT_DATA_FAILURE(state, response) {
+    state.employeesForSelect = null
+  },
+
   FETCH_EMPLOYEE_DIRECT_REPORTS_SUCCESS(state, response) {
     state.employeeDirectReports = response.data
   },
@@ -105,6 +130,30 @@ export const mutations = {
 // actions
 export const actions = {
   async fetchEmployees({ commit }, { page }) {
+    page = page || 1
+
+    try {
+      const { data } = await this.$axios.get(`/employees?page=${page}`)
+
+      commit('FETCH_EMPLOYEES_DATA_SUCCESS', data)
+      commit('FETCH_EMPLOYEES_LINKS_SUCCESS', data)
+      commit('FETCH_EMPLOYEES_META_SUCCESS', data)
+    } catch (e) {
+      commit('FETCH_EMPLOYEES_FAILURE')
+    }
+  },
+  async fetchEmployeesForSelect({ commit }) {
+    try {
+      const { data } = await this.$axios.get(
+        `/employees?isSelect&orderBy=last_name&per_page=all`
+      )
+
+      commit('FETCH_EMPLOYEES_FOR_SELECT_DATA_SUCCESS', data)
+    } catch (e) {
+      commit('FETCH_EMPLOYEES_FOR_SELECT_DATA_FAILURE')
+    }
+  },
+  async fetchMeta({ commit }, { page }) {
     page = page || 1
 
     try {

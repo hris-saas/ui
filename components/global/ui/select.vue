@@ -4,38 +4,31 @@
       <slot />
     </label>
     <div class="mt-1 relative rounded-md shadow-sm">
-      <input
+      <select
         :id="name"
         v-model="modelValue"
-        :placeholder="placeholder"
         :name="name"
-        :type="type"
         :required="required"
         :disabled="disabled"
-        :maxlength="maxlength ? maxlength : 0"
         :autocomplete="autocomplete ? autocomplete : name"
         class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         :class="{
           'border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red': hasError,
           'border-gray-300 placeholder-gray-400 focus:shadow-outline-blue focus:border-blue-300': !hasError,
         }"
-      />
-      <svg-exclamation-circle :has-error="hasError" />
+      >
+        <option disabled="disabled" selected>
+          {{ $t('please_select_one') }}
+        </option>
+        <option v-for="(option, key) in options" :key="key" :value="option.id">
+          {{ translateOptions ? $t(option.name) : option.name }}
+        </option>
+      </select>
+      <svg-exclamation-circle :has-error="hasError" :is-select="true" />
     </div>
     <p v-if="hasError" class="mt-2 text-sm text-red-600">
       {{ error }}
     </p>
-    <p v-if="hasCustomError" class="mt-2 text-sm text-red-600">
-      {{ customError }}
-    </p>
-    <p
-      v-if="helpText"
-      :id="`${name}-description`"
-      class="mt-2 text-sm text-gray-500"
-    >
-      {{ helpText }}
-    </p>
-    <p v-if="status" class="mt-2 text-sm text-green-600">{{ status }}</p>
   </div>
 </template>
 <script>
@@ -43,27 +36,12 @@ export default {
   name: 'Input',
 
   props: {
-    type: {
-      type: String,
-      default: 'text',
-    },
-
     error: {
       type: String,
       default: '',
     },
 
     hasError: {
-      type: Boolean,
-      default: false,
-    },
-
-    customError: {
-      type: String,
-      default: '',
-    },
-
-    hasCustomError: {
       type: Boolean,
       default: false,
     },
@@ -88,17 +66,7 @@ export default {
       default: '',
     },
 
-    maxlength: {
-      type: Number,
-      default: -1,
-    },
-
     status: {
-      type: String,
-      default: '',
-    },
-
-    placeholder: {
       type: String,
       default: '',
     },
@@ -107,12 +75,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    options: {
+      type: Array,
+      default: null,
+    },
 
-    helpText: {
-      type: String,
-      default: '',
+    translateOptions: {
+      type: Boolean,
+      default: false,
     },
   },
+
   computed: {
     modelValue: {
       get() {

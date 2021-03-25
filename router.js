@@ -73,6 +73,12 @@ const routes = [
         meta: { title: 'employees' },
         component: page('pim/employees/index.vue'),
       },
+      {
+        path: 'create',
+        name: 'employees.create',
+        meta: { title: 'create employees' },
+        component: page('pim/employees/create.vue'),
+      },
       //     {
       //       path: ':id',
       //       name: 'employees.show',
