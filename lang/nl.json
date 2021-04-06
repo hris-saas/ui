@@ -138,5 +138,10 @@
   "pay_rate": "Loonschaal",
   "pay_type": "Betaal type",
   "pay_period": "Betaalperiode",
-  "change_reason": "Reden veranderen"
+  "change_reason": "Reden veranderen",
+  "resend_verification_email": "Verificatie e-mail opnieuw verzenden",
+  "whoops": "Oeps!",
+  "successful": "Succesvol!",
+  "email_successfully_verified": "E-mail succesvol geverifieerd!",
+  "login_successful": "Inloggen succesvol!"
 }

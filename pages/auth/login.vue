@@ -28,7 +28,6 @@
           <ui-input
             name="email"
             type="email"
-            :error="form.errors.get('email')"
             :has-error="form.errors.has('email')"
             :value="form.email"
             @update:modelValue="form.email = $event"
@@ -90,9 +89,11 @@
           <div class="mt-6">
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <ui-button native-type="button" type="secondary">
-                  <nuxt-link :to="{ name: 'register' }">{{ $t('register_an_account') }}</nuxt-link>
-                </ui-button>
+                <nuxt-link :to="{ name: 'register' }" class="w-full">
+                  <ui-button native-type="button" type="secondary">
+                    {{ $t('register_an_account') }}
+                  </ui-button>
+                </nuxt-link>
               </span>
             </div>
           </div>
@@ -105,9 +106,11 @@
 
 <script>
 import Form from 'vform'
+import { mapGetters } from 'vuex'
+import { forEach } from 'lodash-es'
 
 export default {
-  layout: 'auth',
+  layout: 'default',
   middleware: 'guest',
   data: () => ({
     form: new Form({
@@ -121,6 +124,12 @@ export default {
     return { title: this.$t('login') }
   },
 
+  computed: {
+    ...mapGetters({
+      user: 'auth/user',
+    }),
+  },
+
   methods: {
     async login() {
       let data
@@ -129,21 +138,39 @@ export default {
       try {
         const response = await this.form.post('/login')
         data = response.data
+
+        // Save the token.
+        this.$store.dispatch('auth/saveToken', {
+          token: data.token,
+          remember: this.remember,
+        })
+
+        // Fetch the user.
+        await this.$store.dispatch('auth/fetchUser')
+
+        // Redirect to dashboard or verification page.
+        if (!this.user.email_verified_at) {
+          this.$router.push({ name: 'verification.index' })
+        }
+
+        this.$router.push({ name: 'dashboard.index' })
+
+        this.$notify({
+          title: this.$t('login_successful'),
+          text: 'Welcome ' + this.user.name,
+          type: 'success',
+          duration: 5000,
+        })
       } catch (e) {
-        return
+        forEach(e.response.data.errors, (error, i) => {
+          this.$notify({
+            title: e.response.data.message,
+            text: error[0],
+            type: 'error',
+            duration: 5000,
+          })
+        })
       }
-
-      // Save the token.
-      this.$store.dispatch('auth/saveToken', {
-        token: data.token,
-        remember: this.remember,
-      })
-
-      // Fetch the user.
-      await this.$store.dispatch('auth/fetchUser')
-
-      // Redirect home.
-      this.$router.push({ name: 'dashboard.index' })
     },
   },
 }

@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  middleware: 'auth',
+  middleware: 'verified',
   created() {
     this.$router.push({ name: 'login' })
   },

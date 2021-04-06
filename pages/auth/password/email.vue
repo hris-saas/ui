@@ -31,10 +31,8 @@
           <ui-input
             name="email"
             type="email"
-            :error="form.errors.get('email')"
             :has-error="form.errors.has('email')"
             :value="form.email"
-            :status="status"
             @update:modelValue="form.email = $event"
           >
             {{ $t('email_address') }}
@@ -62,9 +60,11 @@
           <div class="mt-6">
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <ui-button native-type="button" type="secondary">
-                  <nuxt-link :to="{ name: 'register' }">{{ $t('register_an_account') }}</nuxt-link>
-                </ui-button>
+                <nuxt-link :to="{ name: 'register' }" class="w-full">
+                  <ui-button native-type="button" type="secondary">
+                    {{ $t('register_an_account') }}
+                  </ui-button>
+                </nuxt-link>
               </span>
             </div>
           </div>
@@ -77,9 +77,10 @@
 
 <script>
 import Form from 'vform'
+import { forEach } from 'lodash-es'
 
 export default {
-  layout: 'auth',
+  layout: 'default',
 
   data: () => ({
     status: '',
@@ -99,11 +100,37 @@ export default {
       try {
         const response = await this.form.post('/password/email')
         data = response.data
+
+        this.status = data.status
+
+        this.$notify({
+          title: this.$t('successful'),
+          text: data.status,
+          type: 'success',
+        })
+
+        this.$router.push({ name: 'index' })
       } catch (e) {
+        if (e.response.data.errors) {
+          forEach(e.response.data.errors, (error) => {
+            this.$notify({
+              title: e.response.data.message,
+              text: error[0],
+              type: 'error',
+              duration: 5000,
+            })
+          })
+        } else if (e.response.data.email) {
+          this.$notify({
+            title: this.$t('whoops'),
+            text: e.response.data.email,
+            type: 'error',
+            duration: 5000,
+          })
+        }
+
         return
       }
-
-      this.status = data.status
 
       this.form.reset()
     },

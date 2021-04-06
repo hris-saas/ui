@@ -80,7 +80,7 @@
   "register_an_account": "Register an account",
   "register_with": "Register with",
   "register_successful": "Registration Successful",
-  "register_successful_description": "Your account has been succesfully created.",
+  "register_successful_description": "Your account has been successfully created.",
   "remember_me": "Remember me",
   "resend_verification_link": "Resend Verification Link?",
   "reset_password": "Reset Password",
@@ -138,5 +138,10 @@
   "pay_rate": "Pay rate",
   "pay_type": "Pay type",
   "pay_period": "Pay period",
-  "change_reason": "Change reason"
+  "change_reason": "Change reason",
+  "resend_verification_email": "Resend Verification Email",
+  "whoops": "Whoops!",
+  "successful": "Successful!",
+  "email_successfully_verified": "Email successfully verified!",
+  "login_successful": "Login successful!"
 }
