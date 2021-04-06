@@ -79,6 +79,8 @@
   "register": "Registreren",
   "register_an_account": "Registreer een account",
   "register_with": "Registreer met",
+  "register_successful": "Registratie gelukt",
+  "register_successful_description": "Uw account is succesvol aangemaakt.",
   "remember_me": "Onthoud mij",
   "resend_verification_link": "Verificatielink opnieuw verzenden?",
   "reset_password": "Wachtwoord opnieuw instellen",

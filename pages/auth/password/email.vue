@@ -63,7 +63,7 @@
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
                 <ui-button native-type="button" type="secondary">
-                  {{ $t('register_an_account') }}
+                  <nuxt-link :to="{ name: 'register' }">{{ $t('register_an_account') }}</nuxt-link>
                 </ui-button>
               </span>
             </div>
