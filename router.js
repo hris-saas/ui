@@ -20,7 +20,12 @@ const routes = [
   },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },
-  // { path: '/register', name: 'register', component: page('auth/register.vue') },
+  { path: '/register', name: 'register', component: page('auth/register.vue') },
+  {
+    path: '/register/notice',
+    name: 'registration.notice',
+    component: page('auth/registration/notice.vue')
+  },
   {
     path: '/password/reset',
     name: 'password.request',

@@ -79,6 +79,8 @@
   "register": "Registro",
   "register_an_account": "Registrar una cuenta",
   "register_with": "Registro con",
+  "register_successful": "Registro exitoso",
+  "register_successful_description": "Su cuenta ha sido creada con éxito.",
   "remember_me": "Recuérdame",
   "resend_verification_link": "¿Reenviar el enlace de verificación?",
   "reset_password": "Restablecer la contraseña",
