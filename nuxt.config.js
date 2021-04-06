@@ -14,7 +14,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Loading',
-    titleTemplate: '%s - HRis SaaS',
+    titleTemplate: '%s · HRis SaaS',
     htmlAttrs: {
       lang: 'en',
     },
@@ -35,6 +35,7 @@ export default {
     '~plugins/i18n',
     '~plugins/nuxt-client-init',
     '~plugins/vform',
+    '~plugins/notification',
     { src: '~plugins/infiniteloading', ssr: false },
   ],
 

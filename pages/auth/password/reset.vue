@@ -31,13 +31,9 @@
           <ui-input
             name="email"
             type="email"
-            :error="form.errors.get('email')"
             :has-error="form.errors.has('email')"
-            :custom-error="form.errors.get('password')"
-            :has-custom-error="form.errors.get('password')"
             :disabled="true"
             :value="form.email"
-            :status="status"
             @update:modelValue="form.email = $event"
           >
             {{ $t('email_address') }}
@@ -78,9 +74,10 @@
 
 <script>
 import Form from 'vform'
+import { forEach } from 'lodash-es'
 
 export default {
-  layout: 'auth',
+  layout: 'default',
   data: () => ({
     status: '',
     error: '',
@@ -102,18 +99,38 @@ export default {
 
   methods: {
     async reset() {
-      let data
-
       try {
         const response = await this.form.post('/password/reset')
-        data = response.data
+
+        this.$notify({
+          title: this.$t('successful'),
+          text: response.data.status,
+          type: 'success',
+          duration: 5000,
+        })
+
+        this.form.reset()
+
+        this.$router.push({ name: 'index' })
       } catch (e) {
-        return
+        if (e.response.data.errors) {
+          forEach(e.response.data.errors, (error) => {
+            this.$notify({
+              title: e.response.data.message,
+              text: error[0],
+              type: 'error',
+              duration: 5000,
+            })
+          })
+        } else if (e.response.data.email) {
+          this.$notify({
+            title: this.$t('whoops'),
+            text: e.response.data.email,
+            type: 'error',
+            duration: 5000,
+          })
+        }
       }
-
-      this.status = data.status
-
-      this.form.reset()
     },
   },
 }

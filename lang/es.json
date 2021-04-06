@@ -138,5 +138,10 @@
   "pay_rate": "Tarifa de pago",
   "pay_type": "Tipo de pago",
   "pay_period": "Período de pago",
-  "change_reason": "Cambiar razón"
+  "change_reason": "Cambiar razón",
+  "resend_verification_email": "Reenviar correo electrónico de verificación",
+  "whoops": "¡Gritos!",
+  "successful": "¡Exitoso!",
+  "email_successfully_verified": "¡Correo electrónico verificado correctamente!",
+  "login_successful": "!Inicio de sesión exitoso!"
 }
