@@ -2,8 +2,7 @@
   <div class="flex-1 relative z-0 flex overflow-hidden">
     <div
       class="fixed inset-0 flex items-end justify-center px-4 mt-14 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end"
-    >
-    </div>
+    ></div>
     <form
       ref="form"
       class="px-6 pt-6 pb-4 space-y-8 divide-y divide-gray-200 flex-1 min-h-0 overflow-y-auto"
@@ -818,6 +817,8 @@ export default {
     },
   },
   async created() {
+    this.$emit('setParamName', null)
+
     await this.fetchEmployeeField({
       employeeField: 'statuses',
       isSelect: true,

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+  <div class="relative z-20 flex-shrink-0 flex h-16 bg-white shadow">
     <button
       class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
       @click="toggleSidebar()"
@@ -62,6 +62,7 @@
               class="inline-flex shadow-sm rounded-md divide-x divide-indigo-600"
             >
               <div
+                v-click-outside="hideMenu"
                 class="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-indigo-600"
               >
                 <div
@@ -75,6 +76,7 @@
                   aria-haspopup="listbox"
                   aria-expanded="true"
                   aria-labelledby="listbox-label"
+                  @click="openMenu = !openMenu"
                 >
                   <span class="sr-only">Change published status</span>
                   <!-- Heroicon name: solid/chevron-down -->
@@ -105,59 +107,70 @@
                 From: "opacity-100"
                 To: "opacity-0"
             -->
-            <ul
-              v-show="false"
-              class="origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
-              tabindex="-1"
-              role="listbox"
-              aria-labelledby="listbox-label"
-              aria-activedescendant="listbox-option-0"
+            <transition
+              enter-active-class="transition ease-out duration-100"
+              enter-class="transform opacity-0 scale-95"
+              enter-to-class="transform opacity-100 scale-100"
+              leave-active-class="transition ease-in duration-75"
+              leave-class="transform opacity-100 scale-100"
+              leave-to-class="transform opacity-0 scale-95"
             >
-              <!--
-                Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-
-                Highlighted: "text-white bg-indigo-500", Not Highlighted: "text-gray-900"
-              -->
-              <li
-                id="listbox-option-0"
-                class="text-gray-900 cursor-default select-none relative p-4 text-sm"
-                role="option"
+              <div
+                v-show="openMenu"
+                class="origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                tabindex="-1"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
               >
-                <div class="flex flex-col">
-                  <div class="flex justify-between">
-                    <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                    <p class="font-normal">Published</p>
-                    <!--
-                      Checkmark, only display for selected option.
-
-                      Highlighted: "text-white", Not Highlighted: "text-indigo-500"
-                    -->
-                    <span class="text-indigo-500">
-                      <!-- Heroicon name: solid/check -->
-                      <svg
-                        class="h-5 w-5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                  <!-- Highlighted: "text-indigo-200", Not Highlighted: "text-gray-500" -->
-                  <p class="text-gray-500 mt-2">
-                    This job posting can be viewed by anyone who has the link.
-                  </p>
+                <div class="py-1" role="none">
+                  <nuxt-link
+                    :to="{ name: 'employees.create' }"
+                    class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    role="menuitem"
+                  >
+                    <!-- Heroicon name: solid/user-add -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                      />
+                    </svg>
+                    {{ $t('employee') }}
+                  </nuxt-link>
+                  <nuxt-link
+                    :to="{ name: 'employees.create' }"
+                    class="group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    role="menuitem"
+                  >
+                    <!-- Heroicon name: solid/document-add -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    {{ $t('document') }}
+                  </nuxt-link>
                 </div>
-              </li>
-
-              <!-- More items... -->
-            </ul>
+              </div>
+            </transition>
           </div>
         </div>
         <button
@@ -189,14 +202,25 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
+
 export default {
   name: 'Header',
+  directives: {
+    ClickOutside,
+  },
   props: {
     open: Boolean,
   },
+  data: () => ({
+    openMenu: false,
+  }),
   methods: {
     toggleSidebar() {
       this.$emit('toggleSidebar')
+    },
+    hideMenu() {
+      this.openMenu = false
     },
   },
 }

@@ -1,6 +1,6 @@
 <template>
   <nav class="bg-white border-b border-gray-200 flex" aria-label="Breadcrumb">
-    <ol class="max-w-screen-xl w-full px-4 flex space-x-4 sm:px-6 lg:px-8">
+    <ol class="max-w-screen-xl w-full px-4 flex space-x-4 sm:px-6 lg:px-6">
       <li class="flex">
         <div class="flex items-center">
           <nuxt-link
@@ -48,12 +48,18 @@
 </template>
 <script>
 export default {
+  props: {
+    paramName: {
+      type: String,
+      default: '',
+    },
+  },
   computed: {
     breadcrumbs() {
       const breadcrumbs = []
       // eslint-disable-next-line array-callback-return
       this.$route.matched.map((item, i, { length }) => {
-        if (!item.name.includes('.index')) {
+        if (!item.name.includes('employees.index')) {
           const breadcrumb = {}
           breadcrumb.path = item.path
           breadcrumb.name = this.$t(
@@ -64,18 +70,15 @@ export default {
           if (i === length - 1) {
             // is param route? .../.../:id
             if (item.regex.keys.length > 0) {
-              breadcrumbs.push({
-                path: item.path.replace(/\/:[^/:]*$/, ''),
-                name: this.$t(
-                  'route_' +
-                    item.name.replace(/-[^-]*$/, '').replace(/\./g, '_')
-                ),
-              })
               breadcrumb.path = this.$route.path
-              breadcrumb.name = this.$t(
-                'route_' + this.$route.name.replace(/\./g, '_'),
-                [breadcrumb.path.match(/[^/]*$/)[0]]
-              )
+              if (this.paramName) {
+                breadcrumb.name = this.paramName
+              } else {
+                breadcrumb.name = this.$t(
+                  'route_' + this.$route.name.replace(/\./g, '_'),
+                  [breadcrumb.path.match(/[^/]*$/)[0]]
+                )
+              }
             }
           }
 

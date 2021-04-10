@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/register/notice',
     name: 'registration.notice',
-    component: page('auth/registration/notice.vue')
+    component: page('auth/registration/notice.vue'),
   },
   {
     path: '/password/reset',
@@ -84,12 +84,12 @@ const routes = [
         meta: { title: 'create employees' },
         component: page('pim/employees/create.vue'),
       },
-      //     {
-      //       path: ':id',
-      //       name: 'employees.show',
-      //       meta: { title: '' },
-      //       component: page('pim/employees/show.vue'),
-      //     },
+      {
+        path: ':uuid',
+        name: 'employees.show',
+        meta: { title: '' },
+        component: page('pim/employees/show.vue'),
+      },
       //     {
       //       path: ':id/direct-reports',
       //       name: 'direct-report.index',

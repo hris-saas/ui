@@ -10,6 +10,7 @@ export const state = () => ({
   employeesForDirectoryPage: 1,
   links: null,
   meta: null,
+  viewType: 'table',
 })
 
 // getters
@@ -23,6 +24,7 @@ export const getters = {
   employeeIndirectReports: (state) => state.employeeIndirectReports,
   links: (state) => state.links,
   meta: (state) => state.meta,
+  viewType: (state) => state.viewType,
 }
 
 // mutations
@@ -125,15 +127,23 @@ export const mutations = {
   FETCH_EMPLOYEE_FAILURE(state) {
     state.employee = null
   },
+
+  SET_VIEW_TYPE(state, response) {
+    state.viewType = response
+  },
 }
 
 // actions
 export const actions = {
-  async fetchEmployees({ commit }, { page }) {
+  async fetchEmployees({ commit }, { page, perPage, status }) {
     page = page || 1
+    perPage = perPage || 16
+    status = status || 1
 
     try {
-      const { data } = await this.$axios.get(`/employees?page=${page}`)
+      const { data } = await this.$axios.get(
+        `/employees?page=${page}&per_page=${perPage}&status=${status}`
+      )
 
       commit('FETCH_EMPLOYEES_DATA_SUCCESS', data)
       commit('FETCH_EMPLOYEES_LINKS_SUCCESS', data)
@@ -223,5 +233,8 @@ export const actions = {
     } catch (e) {
       commit('FETCH_EMPLOYEE_INDIRECT_REPORTS_FAILURE')
     }
+  },
+  setViewType({ commit }, { view }) {
+    commit('SET_VIEW_TYPE', view)
   },
 }

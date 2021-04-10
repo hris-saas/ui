@@ -1,19 +1,14 @@
 <template>
   <ui-main>
-    <main
-      class="flex-1 relative z-0 overflow-y-auto py-6 focus:outline-none"
-      tabindex="0"
-    >
-      <div class="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
-        <h1 class="text-2xl font-semibold text-gray-900">
-          {{ $t('dashboard') }}
-        </h1>
-      </div>
-      <div class="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
-        <div class="py-4">
-          <div
-            class="border-4 border-dashed border-gray-200 rounded-lg h-96"
-          ></div>
+    <main class="h-screen flex overflow-hidden focus:outline-none bg-white">
+      <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
+        <breadcrumb />
+        <div
+          class="px-6 pt-6 pb-4 border-b border-gray-200 flex items-center justify-between"
+        >
+          <h2 class="text-xl pb-2.5 leading-6 font-bold text-gray-900">
+            {{ $t('dashboard') }}
+          </h2>
         </div>
       </div>
     </main>
