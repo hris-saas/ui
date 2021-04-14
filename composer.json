@@ -15,6 +15,10 @@
         }
     ],
     "repositories": {
+        "core": {
+            "type": "path",
+            "url": "../core"
+        },
         "gitlab.com/6899303": {
             "type": "composer",
             "url": "https://gitlab.com/api/v4/group/6899303/-/packages/composer/packages.json"
