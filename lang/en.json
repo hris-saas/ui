@@ -80,7 +80,7 @@
   "register_an_account": "Register an account",
   "register_with": "Register with",
   "register_successful": "Registration Successful",
-  "register_successful_description": "Your account has been successfully created.",
+  "register_successful_description": "Your account has been successfully created. Please check your email to verify your account. Thank you!",
   "remember_me": "Remember me",
   "resend_verification_link": "Resend Verification Link?",
   "reset_password": "Reset Password",
