@@ -63,7 +63,6 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://tenant1.hris-saas.local/api',
     credentials: true,
   },
 

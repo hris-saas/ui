@@ -1,5 +1,9 @@
+import { getBaseURL } from '~/utils'
+
 export default function ({ store, $axios, redirect }) {
   $axios.onRequest((config) => {
+    $axios.setBaseURL(getBaseURL())
+
     const token = store.getters['auth/token']
 
     if (token) {

@@ -40,3 +40,17 @@ export function scrollBehavior(to, from, savedPosition) {
 
   return position
 }
+
+export function getBaseURL() {
+  const APP_DOMAIN = location.hostname
+  const APP_PROTOCOL = location.protocol
+  const APP_PORT = location.port
+
+  let BASE_URL = APP_PROTOCOL + '//' + APP_DOMAIN + '/api'
+
+  if (APP_PORT > 443) {
+    BASE_URL = 'https://tenant1.hris-saas.local/api'
+  }
+
+  return BASE_URL
+}
